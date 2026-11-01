@@ -94,18 +94,22 @@ TEST(TDynamicVector, can_assign_vectors_of_equal_size)
 	TDynamicVector<int> v(4);
 	v[0] = 1; v[1] = 2; v[2] = 3; v[3] = 4;
 	TDynamicVector<int> v1(4);
+	TDynamicVector<int> true_res(4);
+	true_res[0] = 1; true_res[1] = 2; true_res[2] = 3; true_res[3] = 4;
 	ASSERT_NO_THROW(v1 = v);
 	EXPECT_EQ(v1.size(), 4);
-	EXPECT_EQ(v1[0], 1);
-	EXPECT_EQ(v1[1], 2);
-	EXPECT_EQ(v1[2], 3);
-	EXPECT_EQ(v1[3], 4);
+	//EXPECT_EQ(v1[0], 1);
+	//EXPECT_EQ(v1[1], 2);
+	//EXPECT_EQ(v1[2], 3);
+	//EXPECT_EQ(v1[3], 4);
+	EXPECT_EQ(v1, true_res);
 
 	EXPECT_EQ(v.size(), 4);
-	EXPECT_EQ(v[0], 1);
-	EXPECT_EQ(v[1], 2);
-	EXPECT_EQ(v[2], 3);
-	EXPECT_EQ(v[3], 4);
+	//EXPECT_EQ(v[0], 1);
+	//EXPECT_EQ(v[1], 2);
+	//EXPECT_EQ(v[2], 3);
+	//EXPECT_EQ(v[3], 4);
+	EXPECT_EQ(v, true_res);
 	
 }
 
@@ -128,11 +132,14 @@ TEST(TDynamicVector, can_assign_vectors_of_different_size)
 	v[0] = 1; v[1] = 2; v[2] = 3; v[3] = 4;
 	TDynamicVector<int> v1(5);
 	v1 = v;
+	TDynamicVector<int> true_res(4);
+	true_res[0] = 1; true_res[1] = 2; true_res[2] = 3; true_res[3] = 4;
 	ASSERT_EQ(v1.size(), 4u);
-	EXPECT_EQ(v1[0], 1);
-	EXPECT_EQ(v1[1], 2);
-	EXPECT_EQ(v1[2], 3);
-	EXPECT_EQ(v1[3], 4);
+	//EXPECT_EQ(v1[0], 1);
+	//EXPECT_EQ(v1[1], 2);
+	//EXPECT_EQ(v1[2], 3);
+	//EXPECT_EQ(v1[3], 4);
+	EXPECT_EQ(true_res, v1);
 	v[0] = 100;
 	EXPECT_EQ(v1[0], 1);
 }
@@ -170,11 +177,14 @@ TEST(TDynamicVector, can_add_scalar_to_vector)
 	TDynamicVector<int> v(4);
 	v[0] = 1; v[1] = 2; v[2] = 3; v[3] = 4;
 	TDynamicVector<int> res = v + 10;
+	TDynamicVector<int> true_res(4);
+	true_res[0] = 11; true_res[1] = 12; true_res[2] = 13; true_res[3] = 14;
 	ASSERT_EQ(res.size(), 4u);
-	EXPECT_EQ(res[0], 11);
-	EXPECT_EQ(res[1], 12);
-	EXPECT_EQ(res[2], 13);
-	EXPECT_EQ(res[3], 14);
+	//EXPECT_EQ(res[0], 11);
+	//EXPECT_EQ(res[1], 12);
+	//EXPECT_EQ(res[2], 13);
+	//EXPECT_EQ(res[3], 14);
+	EXPECT_EQ(res, true_res);
 }
 
 TEST(TDynamicVector, can_subtract_scalar_from_vector)
@@ -182,11 +192,14 @@ TEST(TDynamicVector, can_subtract_scalar_from_vector)
 	TDynamicVector<int> v(4);
 	v[0] = 1; v[1] = 2; v[2] = 3; v[3] = 4;
 	TDynamicVector<int> res = v - 1;
+	TDynamicVector<int> true_res(4);
+	true_res[0] = 0; true_res[1] = 1; true_res[2] = 2; true_res[3]=3;
 	ASSERT_EQ(res.size(), 4u);
-	EXPECT_EQ(res[0], 0);
-	EXPECT_EQ(res[1], 1);
-	EXPECT_EQ(res[2], 2);
-	EXPECT_EQ(res[3], 3);
+	//EXPECT_EQ(res[0], 0);
+	//EXPECT_EQ(res[1], 1);
+	//EXPECT_EQ(res[2], 2);
+	//EXPECT_EQ(res[3], 3);
+	EXPECT_EQ(res, true_res);
 }
 
 TEST(TDynamicVector, can_multiply_scalar_by_vector)
@@ -194,11 +207,14 @@ TEST(TDynamicVector, can_multiply_scalar_by_vector)
 	TDynamicVector<int> v(4);
 	v[0] = 1; v[1] = 2; v[2] = 3; v[3] = 4;
 	TDynamicVector<int> res = v*2;
+	TDynamicVector<int> true_res(4);
+	true_res[0] = 2; true_res[1] = 4; true_res[2] = 6; true_res[3] = 8;
 	ASSERT_EQ(res.size(), 4u);
-	EXPECT_EQ(res[0], 2);
-	EXPECT_EQ(res[1], 4);
-	EXPECT_EQ(res[2], 6);
-	EXPECT_EQ(res[3], 8);
+	//EXPECT_EQ(res[0], 2);
+	//EXPECT_EQ(res[1], 4);
+	//EXPECT_EQ(res[2], 6);
+	//EXPECT_EQ(res[3], 8);
+	EXPECT_EQ(res, true_res);
 }
 
 TEST(TDynamicVector, can_add_vectors_with_equal_size)
@@ -208,11 +224,14 @@ TEST(TDynamicVector, can_add_vectors_with_equal_size)
 	TDynamicVector<int> v1(4);
 	v1[0] = 2; v1[1] = 2; v1[2] = 2; v1[3] = 2;
 	TDynamicVector<int> res = v + v1;
+	TDynamicVector<int> true_res(4);
+	true_res[0] = 3; true_res[1] = 4; true_res[2] = 5; true_res[3] = 6;
 	ASSERT_EQ(res.size(), 4u);
-	EXPECT_EQ(res[0], 3);
-	EXPECT_EQ(res[1], 4);
-	EXPECT_EQ(res[2], 5);
-	EXPECT_EQ(res[3], 6);
+	//EXPECT_EQ(res[0], 3);
+	//EXPECT_EQ(res[1], 4);
+	//EXPECT_EQ(res[2], 5);
+	//EXPECT_EQ(res[3], 6);
+	EXPECT_EQ(res, true_res);
 }
 
 TEST(TDynamicVector, cant_add_vectors_with_not_equal_size)
@@ -229,11 +248,14 @@ TEST(TDynamicVector, can_subtract_vectors_with_equal_size)
 	TDynamicVector<int> v1(4);
 	v1[0] = 2; v1[1] = 2; v1[2] = 2; v1[3] = 2;
 	TDynamicVector<int> res = v - v1;
+	TDynamicVector<int> true_res(4);
+	true_res[0] = -1; true_res[1] = 0; true_res[2] = 1; true_res[3] = 2;
 	ASSERT_EQ(res.size(), 4u);
-	EXPECT_EQ(res[0], -1);
-	EXPECT_EQ(res[1], 0);
-	EXPECT_EQ(res[2], 1);
-	EXPECT_EQ(res[3], 2);
+	//EXPECT_EQ(res[0], -1);
+	//EXPECT_EQ(res[1], 0);
+	//EXPECT_EQ(res[2], 1);
+	//EXPECT_EQ(res[3], 2);
+	EXPECT_EQ(res,true_res);
 }
 
 TEST(TDynamicVector, cant_subtract_vectors_with_not_equal_size)
